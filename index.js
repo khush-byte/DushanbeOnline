@@ -8,18 +8,21 @@ var config = {
     user: 'pvgdev',
     password: 'zxc12345',
     server: '192.168.28.80', 
-    database: 'PVG_DEV' 
+    database: 'PVG_DEV',
+    "options": {
+    "encrypt": false,
+    "enableArithAbort": true},
 };
 
 app.get('/', function (req, res) {
     // connect to your database
     sql.connect(config, function (err) {
-        if (err) console.log(err);
+        //if (err) console.log(err);
         // create Request object
         var request = new sql.Request();
         // query to the database and get the records
         request.query('select * from test', function (err, recordset) {
-            if (err) console.log(err)
+            //if (err) console.log(err)
             // send records as a response
             res.send(recordset);
         });
@@ -49,7 +52,7 @@ app.get('/insert', function (req, res) {
             //if (err) console.log(err);
             // send records as a response
             res.send(recordset);
-            console.log(recordset);
+            //console.log(recordset);
         });
     });
 });
